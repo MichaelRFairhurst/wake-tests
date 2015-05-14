@@ -1,0 +1,22 @@
+#>
+# Source Code for the Original Compiler for the
+# Programming Language Wake
+#
+# InheritanceTestParent.wk
+#
+# Licensed under the MIT license
+# See LICENSE.TXT for details
+#
+# Author: Michael Fairhurst
+# Revised By:
+#
+##
+module wktest;
+
+every InheritanceTestParent is:
+
+needs public Text:TestTransitiveNeeds;
+
+Text -- getClassName() {
+	return "InheritanceTestParent";
+}

@@ -1,0 +1,25 @@
+#>
+# Source Code for the Original Compiler for the
+# Programming Language Wake
+#
+# InheritanceTestInterface.wk
+#
+# Licensed under the MIT license
+# See LICENSE.TXT for details
+#
+# Author: Michael Fairhurst
+# Revised By:
+#
+##
+module wktest;
+
+import wktest.InheritanceTestParent;
+
+every InheritanceTestInterface (capable InheritanceTestParent) is:
+
+with public Text = "not injected";
+
+Text -- getClassName() {
+	return "InheritanceTestInterface";
+}
+
