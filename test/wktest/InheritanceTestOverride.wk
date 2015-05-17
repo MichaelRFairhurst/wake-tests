@@ -11,8 +11,9 @@
 # Revised By:
 #
 ##
+module wktest;
 
-import InheritanceTestParent;
+import wktest.InheritanceTestParent;
 
 every InheritanceTestOverride (an InheritanceTestParent) is:
 

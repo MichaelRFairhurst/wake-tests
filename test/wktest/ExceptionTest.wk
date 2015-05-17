@@ -183,7 +183,7 @@ every ExceptionTest is:
 			throw Exception from this;
 		} catch(Exception) {
 			var Text[] = Exception.getStacktrace().split("\n");
-			Asserts.that(Text[1].substr(0, 69))Equals("    at [WAKE] ExceptionTest.~[ test exception stack trace ]~(Asserts)");
+			Asserts.that(Text[1].substr(0, 76))Equals("    at [WAKE] wktest.ExceptionTest.~[ test exception stack trace ]~(Asserts)");
 		}
 	}
 
@@ -201,8 +201,8 @@ every ExceptionTest is:
 			recurseTilThrow(Exception from this, 1);
 		} catch(Exception) {
 			var Text[] = Exception.getStacktrace().split("\n");
-			Asserts.that(Text[1].substr(0, 58))Equals("    at [WAKE] ExceptionTest.recurseTilThrow(Exception,Num)");
-			Asserts.that(Text[2].substr(0, 58))Equals("    at [WAKE] ExceptionTest.recurseTilThrow(Exception,Num)");
+			Asserts.that(Text[1].substr(0, 65))Equals("    at [WAKE] wktest.ExceptionTest.recurseTilThrow(Exception,Num)");
+			Asserts.that(Text[2].substr(0, 65))Equals("    at [WAKE] wktest.ExceptionTest.recurseTilThrow(Exception,Num)");
 		}
 	}
 
@@ -214,7 +214,7 @@ every ExceptionTest is:
 		} catch(UndefinedIndexException) {
 			var Text[] = UndefinedIndexException.getStacktrace().split("\n");
 			Asserts.that(Text[0])Equals("Accessing undefined index 0 of a list");
-			Asserts.that(Text[2].substr(0, 73))Equals("    at [WAKE] ExceptionTest.~[ test undefined index exception ]~(Asserts)");
+			Asserts.that(Text[2].substr(0, 80))Equals("    at [WAKE] wktest.ExceptionTest.~[ test undefined index exception ]~(Asserts)");
 		}
 	}
 
@@ -228,7 +228,7 @@ every ExceptionTest is:
 		} catch(UndefinedIndexException) {
 			var Text[] = UndefinedIndexException.getStacktrace().split("\n");
 			Asserts.that(Text[0])Equals("Accessing undefined index 0 of a list");
-			Asserts.that(Text[2].substr(0, 82))Equals("    at [WAKE] ExceptionTest.~[ test undefined index exception with gap ]~(Asserts)");
+			Asserts.that(Text[2].substr(0, 89))Equals("    at [WAKE] wktest.ExceptionTest.~[ test undefined index exception with gap ]~(Asserts)");
 		}
 	}
 

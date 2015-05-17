@@ -75,7 +75,7 @@ every EarlyBailoutTest is:
 		}
 
 		Tree = Tree(5) from this;
-		Num? = Tree.?left.?Num;
+		Num = Tree.?left.?Num;
 
 		if Num exists {
 			Asserts.fail("Num shouldn't exist");
@@ -92,7 +92,7 @@ every EarlyBailoutTest is:
 		}
 
 		Tree = Tree(5) from this;
-		Num? = Tree.?getLeft().?getNum();
+		Num = Tree.?getLeft().?getNum();
 
 		if Num exists {
 			Asserts.fail("Num shouldn't exist");
