@@ -1,0 +1,28 @@
+#>
+# Source Code for the Original Compiler for the
+# Programming Language Wake
+#
+# CastTest.wk
+#
+# Licensed under the MIT license
+# See LICENSE.TXT for details
+#
+# Author: Michael Fairhurst
+# Revised By:
+#
+##
+
+module wktest;
+
+import wunit.Asserts;
+
+@TestClass
+every CastTest is:
+
+	@Test
+	testUnsafeCastRunsCode(Asserts) {
+		var Num = 0;
+		(unsafe cast Num) (Num := 5);
+
+		Asserts.that(Num)Equals(5);
+	}
