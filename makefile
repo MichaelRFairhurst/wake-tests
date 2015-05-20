@@ -1,7 +1,9 @@
-PROGRAM := your-program-name
+PROGRAM := wake-tests
 
 # set to false or it will be linked with a main()
-EXECUTABLE := true
+EXECUTABLE := false
+MAINCLASS := yourmodule.Main
+MAINMETHOD := "main()"
 
 # Include all wake libraries by default since there aren't many just yet
 LIBRARYFILES := $(wildcard lib/obj/*.o)
@@ -77,7 +79,7 @@ EXTTESTFILES := $(wildcard $(TESTDIR)/extern/js/*.wk) $(wildcard $(TESTDIR)/exte
 # Calculate our artifacts
 ##
 DEPFILES := ${SOURCEFILES:$(SRCDIR)/%.wk=$(SRCDEPDIR)/%.d} ${TESTFILES:$(TESTDIR)/%.wk=$(TESTDEPDIR)/%.d} ${EXTSOURCEFILES:$(SRCDIR)/extern/js/%.wk=$(SRCDEPDIR)/%.d} ${EXTTESTFILES:$(TESTDIR)/extern/js/%.wk=$(TESTDEPDIR)/%.d}
-OBJECTFILES := ${SOURCEFILES:$(SRCDIR)/%.wk=$(SRCDIR)/%.o}
+OBJECTFILES := ${SOURCEFILES:$(SRCDIR)/%.wk=$(OBJECTDIR)/%.o}
 TESTOBJECTFILES := ${TESTFILES:$(TESTDIR)/%.wk=$(OBJECTDIR)/%.o}
 TABLEFILES := ${SOURCEFILES:$(SRCDIR)/%.wk=$(TABLEDIR)/%.table}
 TESTTABLEFILES := ${TESTFILES:$(TESTDIR)/%.wk=$(TABLEDIR)/%.table}
@@ -113,24 +115,24 @@ endif
 # makefiles counted.
 ##
 MOCKOBJECTFILES := $(subst .table.md5,.o,$(subst $(TABLEDIR),$(OBJECTDIR),$(MOCKS)))
-MOCKCLASSNAMES := $(subst Mock.table.md5,,$(subst $(TABLEDIR)/,,$(MOCKS)))
+MOCKCLASSNAMES := $(MOCKS:$(TABLEDIR)/%Mock.table.md5=%)
 # only link MockProvider if we have at least one mock
 ifneq ($(MOCKCLASSNAMES),)
-	MOCKPROVIDEROBJ := $(OBJECTDIR)/MockProvider.o
+	MOCKPROVIDEROBJ := $(OBJECTDIR)/wkto.gen/MockProvider.o
 endif
 
 ## Build a package ##
 package: $(OBJECTFILES) $(TABLEFILES) $(RUNTESTS) $(EXTOBJECTFILES) $(EXTTABLEFILES)
-	@echo $(foreach module,$(subst $(TABLEDIR)/,,$(wildcard $(TABLEDIR)/*)),
-		$(shell mkdir bin/packages/$(module))
-		$(shell mkdir bin/packages/$(module)/obj)
-		$(shell mkdir bin/packages/$(module)/table)
-		$(shell cp $(wildcard $(TABLEDIR)/$(module)/*) bin/packages/$(module)/table)
-		$(shell cp $(wildcard $(OBJECTDIR)/$(module)/*) bin/packages/$(module)/obj))
+	#@echo $(foreach module,$(subst $(OBJECTDIR)/,,$(wildcard $(OBJECTDIR)/*)), \
+		#$(shell mkdir bin/packages/$(module)) \
+		#$(shell mkdir bin/packages/$(module)/obj) \
+		#$(shell mkdir bin/packages/$(module)/table) \
+		#$(shell cp $(TABLEDIR)/$(module)/*.table bin/packages/$(module)/table) \
+		#$(shell cp $(OBJECTDIR)/$(module)/*.o bin/packages/$(module)/obj))
 
 ## Compile our main executable ##
 bin/$(PROGRAM): $(OBJECTFILES) $(TABLEFILES) $(LIBRARYFILES) $(LIBRARYMODULEFILES) $(RUNTESTS) $(EXTOBJECTFILES) $(EXTTABLEFILES)
-	$(WAKE) -l -d $(TABLEDIR) -o bin/$(PROGRAM) $(OBJECTFILES) $(LIBRARYFILES) $(LIBRARYMODULEFILES) $(EXTOBJECTFILES)
+	$(WAKE) -l -d $(TABLEDIR) -o bin/$(PROGRAM) $(OBJECTFILES) $(LIBRARYFILES) $(LIBRARYMODULEFILES) $(EXTOBJECTFILES) -c $(MAINCLASS) -m $(MAINMETHOD)
 
 
 ##
@@ -234,6 +236,8 @@ $(OBJECTDIR)/%.o: $(TABLEDIR)/%.table $(TESTDIR)/extern/js/%.wk
 # are made when the .o file is made.
 ##
 $(OBJECTDIR)/%Mock.o: $(GENDIR)/%Mock.wk
+	@mkdir $(dir $@) 2>/dev/null || :
+	@mkdir $(OBJECTDIR)/$(dir $*) 2>/dev/null || :
 	$(WAKE) $< -d $(TABLEDIR) -o $@
 
 $(TABLEDIR)/%Mock.table: $(GENDIR)/%Mock.wk $(OBJECTDIR)/%Mock.o
@@ -245,24 +249,28 @@ $(TABLEDIR)/%Stubber.table: $(OBJECTDIR)/%Mock.o
 $(TABLEDIR)/%Verifier.table: $(OBJECTDIR)/%Mock.o
 	@:
 
-
 ##
 # Mock source generation
 ##
-$(GENDIR)/%Mock.wk: $(TABLEDIR)/%.table.md5
-	$(WOCKITO) -d $(TABLEDIR) -o $@ $*
+$(GENDIR)/wkto.gen.%Mock.wk: $(TABLEDIR)/%.table.md5
+	$(WOCKITO) -d $(TABLEDIR) -o $@ $(subst /,.,$*)
 
-$(GENDIR)/MockProvider.wk: $(MOCKS)
+$(GENDIR)/wkto.gen/%Mock.wk: $(TABLEDIR)/%.table.md5
+	$(WOCKITO) -d $(TABLEDIR) -o $@ $(subst /,.,$*)
+
+$(GENDIR)/wkto.gen/MockProvider.wk: $(MOCKS)
 	$(WOCKITO) -p -d $(TABLEDIR) -o $@ $(MOCKCLASSNAMES)
 
 
 ##
 # Mock provider compilation
 ##
-$(OBJECTDIR)/MockProvider.o: $(GENDIR)/MockProvider.wk
+$(OBJECTDIR)/wkto.gen/MockProvider.o: $(GENDIR)/wkto.gen/MockProvider.wk
+	@mkdir $(dir $@) 2>/dev/null || :
+	@mkdir $(OBJECTDIR)/$(dir $*) 2>/dev/null || :
 	$(WAKE) $< -d $(TABLEDIR) -o $@
 
-$(TABLEDIR)/MockProvider.table: $(OBJECTDIR)/MockProvider.o
+$(TABLEDIR)/wkto.gen/MockProvider.table: $(OBJECTDIR)/wkto.gen/MockProvider.o
 
 
 ##
