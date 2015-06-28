@@ -23,7 +23,7 @@ every ForeachTest is:
 		var Num[] = [];
 		var Bool = false;
 
-		foreach(Num[]) {
+		foreach Num[] {
 			Bool = true;
 		}
 
@@ -35,7 +35,7 @@ every ForeachTest is:
 		var Num[] = [1, 2, 3];
 		var $Num[] = [];
 
-		foreach(Num[]) {
+		foreach Num[] {
 			$Num[].push(Num);
 		}
 
@@ -49,7 +49,7 @@ every ForeachTest is:
 	~[ test loop with values aren't references ]~(Asserts) {
 		var Num[] = [0, 1, 2];
 
-		foreach(Num[]) {
+		foreach Num[] {
 			Num += 2;
 		}
 
@@ -63,7 +63,7 @@ every ForeachTest is:
 		var Num = 0;
 		var Bool[] = [true, false, false, true];
 
-		foreach(Bool[]) {
+		foreach Bool[] {
 			if(Bool) {
 				Bool[].push(false);
 				Bool[].push(false);
@@ -77,7 +77,7 @@ every ForeachTest is:
 	@Test
 	~[ test foreach over statement only happens once ]~(Asserts) {
 		var Num[] copy = [];
-		foreach(getNumArray()) {
+		foreach getNumArray() {
 			copy.push(Num);
 		}
 
@@ -97,15 +97,15 @@ every ForeachTest is:
 	@Test
 	~[ test can iterate over an array twice ]~(Asserts) {
 		var Num[] = [];
-		foreach(Num[]) { }
-		foreach(Num[]) { }
+		foreach Num[] { }
+		foreach Num[] { }
 	}
 
 	@Test
 	~[ test foreach as alias sets value properly in var ]~(Asserts) {
 		var Num[] copy = [];
 		var Num[] = [0, 1, 2];
-		foreach(num in Num[]) {
+		foreach num in Num[] {
 			copy.push(num);
 		}
 
@@ -118,7 +118,7 @@ every ForeachTest is:
 	~[ test foreach as class sets value properly in var ]~(Asserts) {
 		var Num[] copy = [];
 		var Num[] = [0, 1, 2];
-		foreach(Num in Num[]) {
+		foreach Num in Num[] {
 			copy.push(Num);
 		}
 
@@ -131,7 +131,7 @@ every ForeachTest is:
 	~[ test foreach as shadow sets value properly in var ]~(Asserts) {
 		var Num[] copy = [];
 		var Num[] = [0, 1, 2];
-		foreach($Num in Num[]) {
+		foreach $Num in Num[] {
 			copy.push($Num);
 		}
 
