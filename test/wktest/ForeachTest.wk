@@ -139,3 +139,74 @@ every ForeachTest is:
 		Asserts.that(copy[1])Equals(1);
 		Asserts.that(copy[2])Equals(2);
 	}
+
+	@Test
+	~[ test foreach at tracks runs ]~(Asserts) {
+		var $Num = 0;
+		var $$Num[] = [0, 1, 2];
+		foreach $$Num[] at Num {
+			$Num = $Num + 1;
+		}
+
+		Asserts.that($Num)Equals(3);
+
+		foreach $$Num in $$Num[] at Num {
+			$Num = $Num + 1;
+		}
+
+		Asserts.that($Num)Equals(6);
+	}
+
+	@Test
+	~[ test foreach at tracks indexes properly ]~(Asserts) {
+		var $Num = 0;
+		var $$Num[] = [0, 1, 2];
+		foreach $$Num[] at Num {
+			Asserts.that(Num)Equals($Num);
+			$Num = $Num + 1;
+		}
+	}
+
+	@Test
+	~[ test foreach in at tracks indexes properly ]~(Asserts) {
+		var Num[] = [0, 1, 2];
+		foreach $Num in Num[] at Num {
+			Asserts.that(Num)Equals($Num);
+		}
+	}
+
+	@Test
+	~[ test foreach at tracks indexes properly when shadowed ]~(Asserts) {
+		var Num = 0;
+		var $$Num[] = [0, 1, 2];
+		foreach $$Num[] at $Num {
+			Asserts.that(Num)Equals($Num);
+			Num = Num + 1;
+		}
+	}
+
+	@Test
+	~[ test foreach in at tracks indexes properly when shadowed ]~(Asserts) {
+		var Num[] = [0, 1, 2];
+		foreach Num in Num[] at $Num {
+			Asserts.that(Num)Equals($Num);
+		}
+	}
+
+	@Test
+	~[ test foreach at tracks indexes properly when aliased ]~(Asserts) {
+		var Num = 0;
+		var $Num[] = [0, 1, 2];
+		foreach $Num[] at num {
+			Asserts.that(Num)Equals(num);
+			Num = Num + 1;
+		}
+	}
+
+	@Test
+	~[ test foreach in at tracks indexes properly when aliased ]~(Asserts) {
+		var Num[] = [0, 1, 2];
+		foreach Num in Num[] at num {
+			Asserts.that(Num)Equals(num);
+		}
+	}
