@@ -19,6 +19,14 @@ import wunit.Asserts;
 every AssignmentsTest is:
 
 	@Test
+	testTypeInferenceAssignment(Asserts) {
+		var i = 5;
+		i = 0;
+		Asserts.that(i)Equals(0);
+		i = 1;
+	}
+
+	@Test
 	testPlusEquals(Asserts) {
 		var Num = 5;
 		Num += 0;
