@@ -21,7 +21,7 @@ every PrecisionTest is:
 
 	@Test
 	testDoublePrecisionIsAvailable(Asserts) {
-		Asserts.that(3.211111118482222.toString())Equals("3.211111118482222");
+		Asserts.that(3.211111118482222.toText())Equals("3.211111118482222");
 	}
 
 	@Test

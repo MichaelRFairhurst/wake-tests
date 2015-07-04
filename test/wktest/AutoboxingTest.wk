@@ -136,7 +136,7 @@ every AutoboxingTest is:
 	@Test
 	testTextLength(Asserts) {
 		Asserts.that("hello".getSize())Equals(5);
-		Asserts.that("h".getSize())Equals(1);
+		Asserts.that("h"s.getSize())Equals(1);
 		Asserts.that("".getSize())Equals(0);
 		Asserts.that("suuuuuuuuuuuuuuuuuupa coooooooooooooooooool".getSize())Equals(43);
 	}
@@ -152,16 +152,16 @@ every AutoboxingTest is:
 
 	@Test
 	testNumToString(Asserts) {
-		Asserts.that(5.toString())Equals("5");
-		Asserts.that(0.toString())Equals("0");
-		Asserts.that(2020.toString())Equals("2020");
-		Asserts.that(-2020.toString())Equals("-2020");
+		Asserts.that(5.toText())Equals("5"s);
+		Asserts.that(0.toText())Equals("0"s);
+		Asserts.that(2020.toText())Equals("2020");
+		Asserts.that(-2020.toText())Equals("-2020");
 	}
 
 	@Test
 	testBoolToString(Asserts) {
-		Asserts.that(true.toString())Equals("true");
-		Asserts.that(false.toString())Equals("false");
+		Asserts.that(true.toText())Equals("true");
+		Asserts.that(false.toText())Equals("false");
 	}
 
 	@Test
@@ -213,7 +213,7 @@ every AutoboxingTest is:
 
 	@Test
 	testParseNum(Asserts) {
-		it(Asserts)That("5".parseNum())ExistsAndEquals(5);
+		it(Asserts)That("5"s.parseNum())ExistsAndEquals(5);
 		it(Asserts)That("54".parseNum())ExistsAndEquals(54);
 		it(Asserts)That("54.5".parseNum())ExistsAndEquals(54.5);
 		it(Asserts)That("-54.5".parseNum())ExistsAndEquals(-54.5);
@@ -227,7 +227,7 @@ every AutoboxingTest is:
 		if Num exists {
 			Asserts.that(Num)Equals($Num);
 		} else {
-			Asserts.fail("Num should have equaled " + $Num.toString() + ", but didn't exist.");
+			Asserts.fail("Num should have equaled " + $Num.toText() + ", but didn't exist.");
 		}
 	}
 
@@ -239,14 +239,22 @@ every AutoboxingTest is:
 		}
 	}
 
+	it(Asserts)That(Char?)ExistsAndEquals($Char) {
+		if Char exists {
+			Asserts.that(Char)Equals($Char)Otherwise("Chars didn't match.");
+		} else {
+			Asserts.fail("Char should have equaled" + $Char.toText() + ", but didn't exist.");
+		}
+	}
+
 	@Test
 	testCharAt(Asserts) {
 		it(Asserts)That("aoeu".charAt(0))ExistsAndEquals("a");
 		it(Asserts)That("aoeu".charAt(1))ExistsAndEquals("o");
 		it(Asserts)That("aoeu".charAt(2))ExistsAndEquals("e");
 		it(Asserts)That("aoeu".charAt(3))ExistsAndEquals("u");
-		var Text? = "aoeu".charAt(4);
-		if Text exists {
+		var Char? = "aoeu".charAt(4);
+		if Char exists {
 			Asserts.fail('"aoeu".charAt(4) shouldn\'t exist');
 		}
 	}
@@ -257,12 +265,12 @@ every AutoboxingTest is:
 		Asserts.that("hello heyo".split(" ")[0])Equals("hello");
 		Asserts.that("hello heyo".split(" ")[1])Equals("heyo");
 		Asserts.that("fair hair blair snare tear lair mare dairy".split("air").getSize())Equals(6);
-		Asserts.that("fair hair blair snare tear lair mare dairy".split("air")[0])Equals("f");
+		Asserts.that("fair hair blair snare tear lair mare dairy".split("air")[0])Equals("f"s);
 		Asserts.that("fair hair blair snare tear lair mare dairy".split("air")[1])Equals(" h");
 		Asserts.that("fair hair blair snare tear lair mare dairy".split("air")[2])Equals(" bl");
 		Asserts.that("fair hair blair snare tear lair mare dairy".split("air")[3])Equals(" snare tear l");
 		Asserts.that("fair hair blair snare tear lair mare dairy".split("air")[4])Equals(" mare d");
-		Asserts.that("fair hair blair snare tear lair mare dairy".split("air")[5])Equals("y");
+		Asserts.that("fair hair blair snare tear lair mare dairy".split("air")[5])Equals("y"s);
 		Asserts.that("hey man whatchoo doin".split("x").getSize())Equals(1);
 		Asserts.that("hey man whatchoo doin".split("x")[0])Equals("hey man whatchoo doin");
 	}

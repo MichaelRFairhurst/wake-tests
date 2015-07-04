@@ -191,10 +191,10 @@ every LambdaTest is:
 	~[test list.foldr and foldl]~(Asserts) {
 		var Num[] = [1, 2, 3];
 
-		Asserts.that(Num[].foldr({ n, acc => acc + n.toString() }, ""))Equals("123");
-		Asserts.that(Num[].foldl({ n, acc => acc + n.toString() }, ""))Equals("321");
-		Asserts.that(Num[].foldr({ n, acc => acc + n.toString() }, "start"))Equals("start123");
-		Asserts.that(Num[].foldl({ n, acc => acc + n.toString() }, "start"))Equals("start321");
+		Asserts.that(Num[].foldr({ n, acc => acc + n.toText() }, ""))Equals("123");
+		Asserts.that(Num[].foldl({ n, acc => acc + n.toText() }, ""))Equals("321");
+		Asserts.that(Num[].foldr({ n, acc => acc + n.toText() }, "start"))Equals("start123");
+		Asserts.that(Num[].foldl({ n, acc => acc + n.toText() }, "start"))Equals("start321");
 	}
 
 	@Test
