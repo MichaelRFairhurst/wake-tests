@@ -241,7 +241,7 @@ every AutoboxingTest is:
 
 	it(Asserts)That(Char?)ExistsAndEquals($Char) {
 		if Char exists {
-			Asserts.that(Char)Equals($Char)Otherwise("Chars didn't match.");
+			Asserts.that(Char.toText())Equals($Char.toText());
 		} else {
 			Asserts.fail("Char should have equaled" + $Char.toText() + ", but didn't exist.");
 		}
