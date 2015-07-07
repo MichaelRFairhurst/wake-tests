@@ -18,14 +18,14 @@ import wunit.Asserts;
 @TestClass
 every BehavioralProvisionTest is:
 
-	with Num provideme = 0;
+	with Int provideme = 0;
 	with Text providemetext = "";
 
 	provides
-		Num:ProvideMe <- { return provideme; },
+		Int:ProvideMe <- { return provideme; },
 		Text:ProvideMe <- { return providemetext; },
-		Num:changeProperties <- { provideme = 2; providemetext = "hello"; return 4; },
-		Num:ProvideProvideMe <- { return Num:ProvideMe from this; },
+		Int:changeProperties <- { provideme = 2; providemetext = "hello"; return 4; },
+		Int:ProvideProvideMe <- { return Int:ProvideMe from this; },
 		Text:ProvideProvideMe <- { return Text:ProvideMe from this; },
 		Text:ProvideArg1 <- (Text, $Text) { return Text; },
 		Text:ProvideArg2 <- (Text, $Text) { return $Text; },
@@ -34,14 +34,14 @@ every BehavioralProvisionTest is:
 	@Test
 	~[ test get property via provision/declaration after set ]~(Asserts) {
 		provideme = 10;
-		var Num:ProvideMe from this;
-		Asserts.that(Num)Equals(10);
+		var Int:ProvideMe from this;
+		Asserts.that(Int)Equals(10);
 	}
 
 	@Test
 	~[ test get property via provision (no declaration) after set ]~(Asserts) {
 		provideme = 7;
-		Asserts.that(Num:ProvideMe from this)Equals(7);
+		Asserts.that(Int:ProvideMe from this)Equals(7);
 	}
 
 	@Test
@@ -60,14 +60,14 @@ every BehavioralProvisionTest is:
 	@Test
 	~[ test get property via provision/declaration calls other provision after set ]~(Asserts) {
 		provideme = 10;
-		var Num:ProvideProvideMe from this;
-		Asserts.that(Num)Equals(10);
+		var Int:ProvideProvideMe from this;
+		Asserts.that(Int)Equals(10);
 	}
 
 	@Test
 	~[ test get property via provision (no declaration) calls other provision after set ]~(Asserts) {
 		provideme = 7;
-		Asserts.that(Num:ProvideProvideMe from this)Equals(7);
+		Asserts.that(Int:ProvideProvideMe from this)Equals(7);
 	}
 
 	@Test
@@ -85,8 +85,8 @@ every BehavioralProvisionTest is:
 
 	@Test
 	~[ test set properties in a provision ]~(Asserts) {
-		Num:changeProperties from this;
-		var Num:ProvideMe from this;
+		Int:changeProperties from this;
+		var Int:ProvideMe from this;
 		Asserts.that(provideme)Equals(2);
 		Asserts.that(providemetext)Equals("hello");
 	}
