@@ -42,7 +42,7 @@ every MathTest is:
 
 	@Test
 	testDivision(Asserts) {
-		Asserts.that(8 / 4)Equals(2);
+		Asserts.that(8 / 4)Equals(2.0);
 		Asserts.that(10 / 4)Equals(2.5);
 		Asserts.that(10 / 20)Equals(0.5);
 		Asserts.that(8.4 / 4.0)Equals(2.1);
@@ -85,13 +85,13 @@ every MathTest is:
 	@Test
 	testOrderOfOperations(Asserts) {
 		Asserts.that(5 + 6 * 2)Equals(17);
-		Asserts.that(5 - 6 * 2)Equals(0 - 7);
-		Asserts.that(5 + 6 / 2)Equals(8);
-		Asserts.that(5 - 6 / 2)Equals(2);
+		Asserts.that(5 - 6 * 2)Equals(-7);
+		Asserts.that(5 + 6 / 2)Equals(8.0);
+		Asserts.that(5 - 6 / 2)Equals(2.0);
 		Asserts.that(6 * 2 + 5)Equals(17);
 		Asserts.that(6 * 2 - 5)Equals(7);
-		Asserts.that(6 / 2 + 5)Equals(8);
-		Asserts.that(6 / 2 - 5)Equals(0 - 2);
+		Asserts.that(6 / 2 + 5)Equals(8.0);
+		Asserts.that(6 / 2 - 5)Equals(-2.0);
 	}
 
 	@Test
