@@ -22,48 +22,63 @@ every BitwiseTest is:
 	testBitNot(Asserts) {
 		Asserts.that(~224)Equals(-225);
 		Asserts.that(~-85)Equals(84);
-		Asserts.that(~11.23432)Equals(-12);
-		Asserts.that(~11.53432)Equals(-12);
-		Asserts.that(~-191.532)Equals(190);
-		Asserts.that(~-191.332)Equals(190);
+		Asserts.that(~224.0)Equals(-225.0);
+		Asserts.that(~-85.0)Equals(84.0);
+		Asserts.that(~11.23432)Equals(-12.0);
+		Asserts.that(~11.53432)Equals(-12.0);
+		Asserts.that(~-191.532)Equals(190.0);
+		Asserts.that(~-191.332)Equals(190.0);
 	}
 
 	@Test
 	testBitShiftLeft(Asserts) {
 		Asserts.that(1 << 3)Equals(8);
 		Asserts.that(10 << 2)Equals(40);
-		Asserts.that(1.9 << 3)Equals(8);
+		Asserts.that(1.0 << 3)Equals(8.0);
+		Asserts.that(10.0 << 2)Equals(40.0);
+		Asserts.that(1.9 << 3)Equals(8.0);
 	}
 
 	@Test
 	testBitShiftRight(Asserts) {
 		Asserts.that(8 >> 3)Equals(1);
 		Asserts.that(40 >> 2)Equals(10);
+		Asserts.that(8.0 >> 3)Equals(1.0);
+		Asserts.that(40.0 >> 2)Equals(10.0);
 		Asserts.that(40.1 >>2)Equals(10);
 	}
 
 	@Test
 	testBitAnd(Asserts) {
 		Asserts.that(183550952 & 154807247)Equals(137364424);
-		Asserts.that(162447073.1 & 423521256)Equals(154020576);
 		Asserts.that(8 & 5)Equals(0);
 		Asserts.that(5 & 8)Equals(0);
+		Asserts.that(183550952.0 & 154807247.0)Equals(137364424.0);
+		Asserts.that(162447073.1 & 423521256.0)Equals(154020576.0);
+		Asserts.that(8.0 & 5.0)Equals(0.0);
+		Asserts.that(5.0 & 8.0)Equals(0.0);
 	}
 
 	@Test
 	testBitXor(Asserts) {
 		Asserts.that(138 ^ 141)Equals(7);
-		Asserts.that(5.424 ^ 25)Equals(28);
 		Asserts.that(29 ^ 221)Equals(192);
 		Asserts.that(221 ^ 29)Equals(192);
+		Asserts.that(138.0 ^ 141.0)Equals(7.0);
+		Asserts.that(5.424 ^ 25.0)Equals(28.0);
+		Asserts.that(29.0 ^ 221.0)Equals(192.0);
+		Asserts.that(221.0 ^ 29.0)Equals(192.0);
 	}
 
 	@Test
 	testBitOr(Asserts) {
 		Asserts.that(64 | 148)Equals(212);
-		Asserts.that(96.341 | 88)Equals(120);
 		Asserts.that(15 | 178)Equals(191);
 		Asserts.that(178 | 15)Equals(191);
+		Asserts.that(64.0 | 148.0)Equals(212.0);
+		Asserts.that(96.341 | 88.0)Equals(120.0);
+		Asserts.that(15.0 | 178.0)Equals(191.0);
+		Asserts.that(178.0 | 15.0)Equals(191.0);
 	}
 
 	@Test
@@ -78,11 +93,11 @@ every BitwiseTest is:
 		Asserts.that(223 ^ 93 & 86)Equals(139);
 		Asserts.that(127 ^ 206 | 168)Equals(185);
 		Asserts.that(168 | 127 ^ 206)Equals(185);
-		var Num[] b = [0,1,2,3];
+		var Int[] b = [0,1,2,3];
 		Asserts.that(~b[2])Equals(-3);
 		Asserts.that(~(1+2))Equals(-4);
 		Asserts.that(~-5.abs())Equals(-6);
-		var Num a = 5;
+		var Int a = 5;
 		Asserts.that(~-a)Equals(4);
 		Asserts.that(-~a)Equals(6);
 		Asserts.that(~5 * 5)Equals(-30);
