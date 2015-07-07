@@ -68,11 +68,11 @@ every AutoboxingTest is:
 	@Test
 	testMinOfNums(Asserts) {
 		var Num[] = [5.0];
-		Asserts.that(5.orMinOf(Num[]))Equals(5.0);
+		Asserts.that(5.0.orMinOf(Num[]))Equals(5.0);
 		Num[] = [5.0, 4.0];
-		Asserts.that(5.orMinOf(Num[]))Equals(4.0);
+		Asserts.that(5.0.orMinOf(Num[]))Equals(4.0);
 		Num[] = [5.0, 4.0, 6.0];
-		Asserts.that(5.orMinOf(Num[]))Equals(4.0);
+		Asserts.that(5.0.orMinOf(Num[]))Equals(4.0);
 	}
 
 	@Test
@@ -124,12 +124,12 @@ every AutoboxingTest is:
 
 	@Test
 	testArraySize(Asserts) {
-		var Num[] = [];
-		Asserts.that(Num[].getSize())Equals(0);
-		Num[] = [1];
-		Asserts.that(Num[].getSize())Equals(1);
-		Num[] = [1, 1];
-		Asserts.that(Num[].getSize())Equals(2);
+		var Int[] = [];
+		Asserts.that(Int[].getSize())Equals(0);
+		Int[] = [1];
+		Asserts.that(Int[].getSize())Equals(1);
+		Int[] = [1, 1];
+		Asserts.that(Int[].getSize())Equals(2);
 	}
 
 	@Test
@@ -260,7 +260,7 @@ every AutoboxingTest is:
 		if Int exists {
 			Asserts.fail("-5o should not have parsed.");
 		}
-		var Int? = "-5.0".parseInt();
+		Int = "-5.0".parseInt();
 		if Int exists {
 			Asserts.fail("-5o should not have parsed.");
 		}
