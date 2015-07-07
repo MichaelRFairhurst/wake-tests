@@ -21,34 +21,34 @@ every TypesafeArrayAccessTest is:
 
 	@Test
 	~[ test get existing item out of array exists ]~(Asserts) {
-		var Num[] = [0, 1, 2, 3, 4, 5];
-		var Num? = Num[?0];
-		Asserts.that(Num != nothing);
-		Num = Num[?1];
-		Asserts.that(Num != nothing);
-		Num = Num[?2];
-		Asserts.that(Num != nothing);
-		Num = Num[?3];
-		Asserts.that(Num != nothing);
-		Num = Num[?4];
-		Asserts.that(Num != nothing);
-		Num = Num[?5];
-		Asserts.that(Num != nothing);
+		var Int[] = [0, 1, 2, 3, 4, 5];
+		var Int? = Int[?0];
+		Asserts.that(Int != nothing);
+		Int = Int[?1];
+		Asserts.that(Int != nothing);
+		Int = Int[?2];
+		Asserts.that(Int != nothing);
+		Int = Int[?3];
+		Asserts.that(Int != nothing);
+		Int = Int[?4];
+		Asserts.that(Int != nothing);
+		Int = Int[?5];
+		Asserts.that(Int != nothing);
 	}
 
 	@Test
 	~[ test get not existing item out of array exists ]~(Asserts) {
-		var Num[] = [0, 1, 2, 3, 4, 5];
-		var Num? = Num[?6];
-		Asserts.that(Num == nothing);
-		Num = Num[?7];
-		Asserts.that(Num == nothing);
-		Num = Num[?8];
-		Asserts.that(Num == nothing);
-		Num = Num[?9];
-		Asserts.that(Num == nothing);
-		Num = Num[?10];
-		Asserts.that(Num == nothing);
-		Num = Num[?11];
-		Asserts.that(Num == nothing);
+		var Int[] = [0, 1, 2, 3, 4, 5];
+		var Int? = Int[?6];
+		Asserts.that(Int == nothing);
+		Int = Int[?7];
+		Asserts.that(Int == nothing);
+		Int = Int[?8];
+		Asserts.that(Int == nothing);
+		Int = Int[?9];
+		Asserts.that(Int == nothing);
+		Int = Int[?10];
+		Asserts.that(Int == nothing);
+		Int = Int[?11];
+		Asserts.that(Int == nothing);
 	}
