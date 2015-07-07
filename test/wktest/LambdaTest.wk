@@ -121,7 +121,7 @@ every LambdaTest is:
 
 	@Test
 	~[test list.any]~(Asserts) {
-		var runtimes Num = 0;
+		var runtimes = 0;
 		Asserts.that(["hey", "hey", "man"].any({ t -> runtimes += 1; return true; }))Equals(true);
 		Asserts.that(runtimes)Equals(1);
 		Asserts.that(["hey", "hey", "man"].any({ t -> runtimes += 1; return false; }))Equals(false);
@@ -165,36 +165,36 @@ every LambdaTest is:
 		var Text[] = ["blah", "happy", "blappy"];
 
 		var Text[] res = Text[].map({ t => t.toUpper() });
-		var Num[] = Text[].map({ t => t.getSize() });
+		var Int[] = Text[].map({ t => t.getSize() });
 
 		Asserts.that(res.getSize())Equals(3);
 		Asserts.that(res[0])Equals("BLAH");
 		Asserts.that(res[1])Equals("HAPPY");
 		Asserts.that(res[2])Equals("BLAPPY");
 
-		Asserts.that(Num[].getSize())Equals(3);
-		Asserts.that(Num[0])Equals(4);
-		Asserts.that(Num[1])Equals(5);
-		Asserts.that(Num[2])Equals(6);
+		Asserts.that(Int[].getSize())Equals(3);
+		Asserts.that(Int[0])Equals(4);
+		Asserts.that(Int[1])Equals(5);
+		Asserts.that(Int[2])Equals(6);
 	}
 
 	@Test
 	~[test list.reduce]~(Asserts) {
-		var Num[] = [1, 2, 3];
+		var Int[] = [1, 2, 3];
 
-		Asserts.that(Num[].reduce({ n, acc => acc + n }))Equals(6);
-		Asserts.that(Num[].reduce({ n, acc => acc - n }))Equals(-4);
-		Asserts.that(Num[].reduce({ n, acc => (acc + 1) * n }))Equals(15);
+		Asserts.that(Int[].reduce({ n, acc => acc + n }))Equals(6);
+		Asserts.that(Int[].reduce({ n, acc => acc - n }))Equals(-4);
+		Asserts.that(Int[].reduce({ n, acc => (acc + 1) * n }))Equals(15);
 	}
 
 	@Test
 	~[test list.foldr and foldl]~(Asserts) {
-		var Num[] = [1, 2, 3];
+		var Int[] = [1, 2, 3];
 
-		Asserts.that(Num[].foldr({ n, acc => acc + n.toText() }, ""))Equals("123");
-		Asserts.that(Num[].foldl({ n, acc => acc + n.toText() }, ""))Equals("321");
-		Asserts.that(Num[].foldr({ n, acc => acc + n.toText() }, "start"))Equals("start123");
-		Asserts.that(Num[].foldl({ n, acc => acc + n.toText() }, "start"))Equals("start321");
+		Asserts.that(Int[].foldr({ n, acc => acc + n.toText() }, ""))Equals("123");
+		Asserts.that(Int[].foldl({ n, acc => acc + n.toText() }, ""))Equals("321");
+		Asserts.that(Int[].foldr({ n, acc => acc + n.toText() }, "start"))Equals("start123");
+		Asserts.that(Int[].foldl({ n, acc => acc + n.toText() }, "start"))Equals("start321");
 	}
 
 	@Test
@@ -202,6 +202,6 @@ every LambdaTest is:
 
 		Asserts.that(({ => 5 })())Equals(5);
 		Asserts.that(({ => 6; })())Equals(6);
-		Asserts.that(({ Num => Num })(7))Equals(7);
-		Asserts.that(({ Num => Num; })(8))Equals(8);
+		Asserts.that(({ Int => Int })(7))Equals(7);
+		Asserts.that(({ Int => Int; })(8))Equals(8);
 	}
