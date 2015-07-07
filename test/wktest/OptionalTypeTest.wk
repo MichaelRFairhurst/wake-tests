@@ -20,26 +20,26 @@ every OptionalTypeTest is:
 
 	@Test
 	~[test optional int never set]~(Asserts) {
-		var Num? = nothing;
-		if Num exists {
-			Asserts.fail("Num doesn't exist");
+		var Int? = nothing;
+		if Int exists {
+			Asserts.fail("Int doesn't exist");
 		}
 	}
 
 	@Test
 	~[test optional int set]~(Asserts) {
-		var Num? = 5;
-		if Num exists {
-			Asserts.that(Num)Equals(5);
+		var Int? = 5;
+		if Int exists {
+			Asserts.that(Int)Equals(5);
 			return;
 		}
-		Asserts.fail("Num should have existed");
+		Asserts.fail("Int should have existed");
 	}
 
 	@Test
 	~[test optional int not set will hit else]~(Asserts) {
-		var Num? = nothing;
-		if Num exists {} else {
+		var Int? = nothing;
+		if Int exists {} else {
 			return;
 		}
 		Asserts.fail("We didn't hit the else block");
@@ -47,8 +47,8 @@ every OptionalTypeTest is:
 
 	@Test
 	~[test optional int set wont hit else]~(Asserts) {
-		var Num? = 5;
-		if Num exists {} else {
+		var Int? = 5;
+		if Int exists {} else {
 			Asserts.fail("Should not have hit else block");
 		}
 
@@ -56,10 +56,10 @@ every OptionalTypeTest is:
 
 	@Test
 	~[test zero and empty string are not nothing]~(Asserts) {
-		var Num? = 0;
+		var Int? = 0;
 		var Text? = "";
-		if Num exists { } else { Asserts.fail("0 is read as nothing"); }
+		if Int exists { } else { Asserts.fail("0 is read as nothing"); }
 		if Text exists { } else { Asserts.fail("\"\" is read as nothing"); }
-		Asserts.that(Num != nothing);
+		Asserts.that(Int != nothing);
 		Asserts.that(Text != nothing);
 	}
