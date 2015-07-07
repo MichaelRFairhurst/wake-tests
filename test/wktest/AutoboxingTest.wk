@@ -244,7 +244,7 @@ every AutoboxingTest is:
 	}
 
 	@Test
-	testParseNum(Asserts) {
+	testParseInt(Asserts) {
 		it(Asserts)That("5"s.parseInt())ExistsAndEquals(5);
 		it(Asserts)That("54".parseInt())ExistsAndEquals(54);
 		it(Asserts)That("-54".parseInt())ExistsAndEquals(-54);
