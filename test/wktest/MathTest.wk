@@ -24,6 +24,10 @@ every MathTest is:
 		Asserts.that(6 + 2)Equals(8);
 		Asserts.that(60000 + 20000)Equals(80000);
 		Asserts.that(- 20 + 14)Equals(- 6);
+		Asserts.that(2.5 + 2.55)Equals(5.05);
+		Asserts.that(6.5 + 2.55)Equals(9.05);
+		Asserts.that(60000.5 + 20000.55)Equals(80001.05);
+		Asserts.that(- 20.5 + 14.55)Equals(- 5.95);
 	}
 
 	@Test
@@ -31,6 +35,9 @@ every MathTest is:
 		Asserts.that(6 - 2)Equals(4);
 		Asserts.that(42 - 2)Equals(40);
 		Asserts.that(40 - 80)Equals(- 40);
+		Asserts.that(6.5 - 2.45)Equals(4.05);
+		Asserts.that(42.5 - 2.45)Equals(40.05);
+		Asserts.that(40.5 - 80.45)Equals(- 40.05);
 	}
 
 	@Test
@@ -38,6 +45,9 @@ every MathTest is:
 		Asserts.that(8 / 4)Equals(2);
 		Asserts.that(10 / 4)Equals(2.5);
 		Asserts.that(10 / 20)Equals(0.5);
+		Asserts.that(8.4 / 4.0)Equals(2.1);
+		Asserts.that(10.4 / 4.0)Equals(2.6);
+		Asserts.that(10.2 / 20.0)Equals(0.51);
 	}
 
 	@Test
@@ -86,8 +96,8 @@ every MathTest is:
 
 	@Test
 	testNegation(Asserts) {
-		var Num a = 3;
-		var Num b = 2;
+		var Int a = 3;
+		var Int b = 2;
 		Asserts.that(-a - -b)Equals(-1);
 		Asserts.that(a - -b)Equals(5);
 		Asserts.that(a + -b)Equals(1);
