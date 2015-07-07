@@ -19,9 +19,9 @@ import wunit.Asserts;
 every ListIntersectTest is:
 
 	@Test
-	~[ test intersect empty num list with empty num list is empty num list ]~(Asserts) {
-		var Num[] = [];
-		Asserts.that(Num[].intersect(Num[]).getSize())Equals(0);
+	~[ test intersect empty int list with empty int list is empty int list ]~(Asserts) {
+		var Int[] = [];
+		Asserts.that(Int[].intersect(Int[]).getSize())Equals(0);
 	}
 
 	@Test
@@ -31,11 +31,11 @@ every ListIntersectTest is:
 	}
 
 	@Test
-	~[ test intersect empty num list with nonempty num list is empty num list ]~(Asserts) {
-		var Num[] = [];
-		var $Num[] = [4];
-		Asserts.that($Num[].intersect(Num[]).getSize())Equals(0);
-		Asserts.that(Num[].intersect($Num[]).getSize())Equals(0);
+	~[ test intersect empty int list with nonempty int list is empty int list ]~(Asserts) {
+		var Int[] = [];
+		var $Int[] = [4];
+		Asserts.that($Int[].intersect(Int[]).getSize())Equals(0);
+		Asserts.that(Int[].intersect($Int[]).getSize())Equals(0);
 	}
 
 	@Test
@@ -47,13 +47,13 @@ every ListIntersectTest is:
 	}
 
 	@Test
-	~[ test intersect nonempty num list with nonempty num list is nonempty num list ]~(Asserts) {
-		var Num[] = [5];
-		var $Num[] = [5];
-		Asserts.that(Num[].intersect($Num[]).getSize())Equals(1);
-		Asserts.that(Num[].intersect($Num[])[0])Equals(5);
-		Asserts.that($Num[].intersect(Num[]).getSize())Equals(1);
-		Asserts.that($Num[].intersect(Num[])[0])Equals(5);
+	~[ test intersect nonempty int list with nonempty int list is nonempty int list ]~(Asserts) {
+		var Int[] = [5];
+		var $Int[] = [5];
+		Asserts.that(Int[].intersect($Int[]).getSize())Equals(1);
+		Asserts.that(Int[].intersect($Int[])[0])Equals(5);
+		Asserts.that($Int[].intersect(Int[]).getSize())Equals(1);
+		Asserts.that($Int[].intersect(Int[])[0])Equals(5);
 	}
 
 	@Test
@@ -67,11 +67,11 @@ every ListIntersectTest is:
 	}
 
 	@Test
-	~[ test intersect different num lists with no commonality is empty list ]~(Asserts) {
-		var Num[] = [1, 2];
-		var $Num[] = [3, 4];
-		Asserts.that(Num[].intersect($Num[]).getSize())Equals(0);
-		Asserts.that($Num[].intersect(Num[]).getSize())Equals(0);
+	~[ test intersect different int lists with no commonality is empty list ]~(Asserts) {
+		var Int[] = [1, 2];
+		var $Int[] = [3, 4];
+		Asserts.that(Int[].intersect($Int[]).getSize())Equals(0);
+		Asserts.that($Int[].intersect(Int[]).getSize())Equals(0);
 	}
 
 	@Test
@@ -83,16 +83,16 @@ every ListIntersectTest is:
 	}
 
 	@Test
-	~[ test intersect same num lists but different orders returns both ]~(Asserts) {
-		var Num[] = [0, 1];
-		var $Num[] = [1, 0];
+	~[ test intersect same int lists but different orders returns both ]~(Asserts) {
+		var Int[] = [0, 1];
+		var $Int[] = [1, 0];
 
-		Asserts.that(Num[].intersect($Num[]).getSize())Equals(2);
-		Asserts.that(Num[].intersect($Num[])[0])Equals(0);
-		Asserts.that(Num[].intersect($Num[])[1])Equals(1);
-		Asserts.that($Num[].intersect(Num[]).getSize())Equals(2);
-		Asserts.that($Num[].intersect(Num[])[0])Equals(1);
-		Asserts.that($Num[].intersect(Num[])[1])Equals(0);
+		Asserts.that(Int[].intersect($Int[]).getSize())Equals(2);
+		Asserts.that(Int[].intersect($Int[])[0])Equals(0);
+		Asserts.that(Int[].intersect($Int[])[1])Equals(1);
+		Asserts.that($Int[].intersect(Int[]).getSize())Equals(2);
+		Asserts.that($Int[].intersect(Int[])[0])Equals(1);
+		Asserts.that($Int[].intersect(Int[])[1])Equals(0);
 	}
 
 	@Test
@@ -109,15 +109,15 @@ every ListIntersectTest is:
 	}
 
 	@Test
-	~[ test intersect two common nums are kept ]~(Asserts) {
-		var Num[] = [0, 1, 2];
-		var $Num[] = [3, 1, 2];
-		Asserts.that(Num[].intersect($Num[]).getSize())Equals(2);
-		Asserts.that(Num[].intersect($Num[])[0])Equals(1);
-		Asserts.that(Num[].intersect($Num[])[1])Equals(2);
-		Asserts.that($Num[].intersect(Num[]).getSize())Equals(2);
-		Asserts.that($Num[].intersect(Num[])[0])Equals(1);
-		Asserts.that($Num[].intersect(Num[])[1])Equals(2);
+	~[ test intersect two common ints are kept ]~(Asserts) {
+		var Int[] = [0, 1, 2];
+		var $Int[] = [3, 1, 2];
+		Asserts.that(Int[].intersect($Int[]).getSize())Equals(2);
+		Asserts.that(Int[].intersect($Int[])[0])Equals(1);
+		Asserts.that(Int[].intersect($Int[])[1])Equals(2);
+		Asserts.that($Int[].intersect(Int[]).getSize())Equals(2);
+		Asserts.that($Int[].intersect(Int[])[0])Equals(1);
+		Asserts.that($Int[].intersect(Int[])[1])Equals(2);
 	}
 
 	@Test
