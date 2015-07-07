@@ -55,7 +55,7 @@ every MathTest is:
 		Asserts.that(3 * 5)Equals(15);
 		Asserts.that(8 * 16)Equals(128);
 		Asserts.that(8 * 1)Equals(8);
-		Asserts.that(8 * 0.5)Equals(4);
+		Asserts.that(8 * 0.5)Equals(4.0);
 	}
 
 	@Test
