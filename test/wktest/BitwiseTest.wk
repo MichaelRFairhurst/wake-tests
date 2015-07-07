@@ -45,7 +45,7 @@ every BitwiseTest is:
 		Asserts.that(40 >> 2)Equals(10);
 		Asserts.that(8.0 >> 3)Equals(1.0);
 		Asserts.that(40.0 >> 2)Equals(10.0);
-		Asserts.that(40.1 >>2)Equals(10);
+		Asserts.that(40.1 >>2)Equals(10.0);
 	}
 
 	@Test
