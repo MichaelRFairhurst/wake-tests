@@ -171,11 +171,19 @@ every AutoboxingTest is:
 	}
 
 	@Test
-	testNumToString(Asserts) {
+	testIntToString(Asserts) {
 		Asserts.that(5.toText())Equals("5"s);
 		Asserts.that(0.toText())Equals("0"s);
 		Asserts.that(2020.toText())Equals("2020");
 		Asserts.that(-2020.toText())Equals("-2020");
+	}
+
+	@Test
+	testNumToString(Asserts) {
+		Asserts.that(5.5.toText())Equals("5.5");
+		Asserts.that(0.5.toText())Equals("0.5");
+		Asserts.that(2020.5.toText())Equals("2020.5");
+		Asserts.that(-2020.5.toText())Equals("-2020.5");
 	}
 
 	@Test
@@ -186,49 +194,49 @@ every AutoboxingTest is:
 
 	@Test
 	testFloor(Asserts) {
-		Asserts.that(5.5.floor())Equals(5);
-		Asserts.that(5.1.floor())Equals(5);
-		Asserts.that(5.9.floor())Equals(5);
-		Asserts.that(5.0.floor())Equals(5);
-		Asserts.that((0 - 5).floor())Equals(-5);
-		Asserts.that((0 - 5.1).floor())Equals(-6);
-		Asserts.that((0 - 5.5).floor())Equals(-6);
-		Asserts.that((0 - 5.9).floor())Equals(-6);
+		Asserts.that(5.5.floor())Equals(5.0);
+		Asserts.that(5.1.floor())Equals(5.0);
+		Asserts.that(5.9.floor())Equals(5.0);
+		Asserts.that(5.0.floor())Equals(5.0);
+		Asserts.that(-5.0.floor())Equals(-5.0);
+		Asserts.that(-5.1.floor())Equals(-6.0);
+		Asserts.that(-5.5.floor())Equals(-6.0);
+		Asserts.that(-5.9.floor())Equals(-6.0);
 	}
 
 	@Test
 	testCeil(Asserts) {
-		Asserts.that(5.5.ceil())Equals(6);
-		Asserts.that(5.1.ceil())Equals(6);
-		Asserts.that(5.9.ceil())Equals(6);
-		Asserts.that(5.0.ceil())Equals(5);
-		Asserts.that(-5.ceil())Equals(-5);
-		Asserts.that(-5.1.ceil())Equals(-5);
-		Asserts.that(-5.5.ceil())Equals(-5);
-		Asserts.that(-5.9.ceil())Equals(-5);
+		Asserts.that(5.5.ceil())Equals(6.0);
+		Asserts.that(5.1.ceil())Equals(6.0);
+		Asserts.that(5.9.ceil())Equals(6.0);
+		Asserts.that(5.0.ceil())Equals(5.0);
+		Asserts.that(-5.0.ceil())Equals(-5.0);
+		Asserts.that(-5.1.ceil())Equals(-5.0);
+		Asserts.that(-5.5.ceil())Equals(-5.0);
+		Asserts.that(-5.9.ceil())Equals(-5.0);
 	}
 
 	@Test
 	testRound(Asserts) {
-		Asserts.that(5.5.round())Equals(6);
-		Asserts.that(5.51.round())Equals(6);
-		Asserts.that(5.1.round())Equals(5);
-		Asserts.that(5.9.round())Equals(6);
-		Asserts.that(5.0.round())Equals(5);
-		Asserts.that(-5.round())Equals(-5);
-		Asserts.that(-5.1.round())Equals(-5);
-		Asserts.that(-5.5.round())Equals(-5);
-		Asserts.that(-5.51.round())Equals(-6);
-		Asserts.that(-5.9.round())Equals(-6);
+		Asserts.that(5.5.round())Equals(6.0);
+		Asserts.that(5.51.round())Equals(6.0);
+		Asserts.that(5.1.round())Equals(5.0);
+		Asserts.that(5.9.round())Equals(6.0);
+		Asserts.that(5.0.round())Equals(5.0);
+		Asserts.that(-5.0.round())Equals(-5.0);
+		Asserts.that(-5.1.round())Equals(-5.0);
+		Asserts.that(-5.5.round())Equals(-5.0);
+		Asserts.that(-5.51.round())Equals(-6.0);
+		Asserts.that(-5.9.round())Equals(-6.0);
 	}
 
 	@Test
 	testModulo(Asserts) {
-		Asserts.that(5.modulo(2))Equals(1);
-		Asserts.that(10.modulo(2))Equals(0);
-		Asserts.that(10.modulo(3))Equals(1);
-		Asserts.that(11.modulo(3))Equals(2);
-		Asserts.that(12.modulo(3))Equals(0);
+		Asserts.that(5 % 2)Equals(1);
+		Asserts.that(10 % 2)Equals(0);
+		Asserts.that(10 % 3)Equals(1);
+		Asserts.that(11 % 3)Equals(2);
+		Asserts.that(12 % 3)Equals(0);
 	}
 
 	@Test
