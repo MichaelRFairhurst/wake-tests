@@ -28,55 +28,55 @@ every AssignmentsTest is:
 
 	@Test
 	testPlusEquals(Asserts) {
-		var Num = 5;
-		Num += 0;
-		Asserts.that(Num)Equals(5);
-		Num += 1;
-		Asserts.that(Num)Equals(6);
-		Num += 5;
-		Asserts.that(Num)Equals(11);
+		var Int = 5;
+		Int += 0;
+		Asserts.that(Int)Equals(5);
+		Int += 1;
+		Asserts.that(Int)Equals(6);
+		Int += 5;
+		Asserts.that(Int)Equals(11);
 	}
 
 	@Test
 	testMinusEquals(Asserts) {
-		var Num = 5;
-		Num -= 0;
-		Asserts.that(Num)Equals(5);
-		Num -= 1;
-		Asserts.that(Num)Equals(4);
-		Num -= 4;
-		Asserts.that(Num)Equals(0);
+		var Int = 5;
+		Int -= 0;
+		Asserts.that(Int)Equals(5);
+		Int -= 1;
+		Asserts.that(Int)Equals(4);
+		Int -= 4;
+		Asserts.that(Int)Equals(0);
 	}
 
 	@Test
 	testTimesEquals(Asserts) {
-		var Num = 5;
-		Num *= 1;
-		Asserts.that(Num)Equals(5);
-		Num *= 5;
-		Asserts.that(Num)Equals(25);
-		Num *= 0;
-		Asserts.that(Num)Equals(0);
+		var Int = 5;
+		Int *= 1;
+		Asserts.that(Int)Equals(5);
+		Int *= 5;
+		Asserts.that(Int)Equals(25);
+		Int *= 0;
+		Asserts.that(Int)Equals(0);
 	}
 
 	@Test
 	testDivideEquals(Asserts) {
 		var Num = 25;
 		Num /= 5;
-		Asserts.that(Num)Equals(5);
+		Asserts.that(Num)Equals(5.0);
 		Num /= 1;
-		Asserts.that(Num)Equals(5);
+		Asserts.that(Num)Equals(5.0);
 		Num /= 5;
-		Asserts.that(Num)Equals(1);
+		Asserts.that(Num)Equals(1.0);
 	}
 
 	@Test
 	testUsingAssigmentReturnValues(Asserts) {
-		var Num = 5;
-		if((Num := 1) != 1) {
+		var Int = 5;
+		if((Int := 1) != 1) {
 			Asserts.fail("Not equal to one after being set in a subexpression");
 		}
 
-		Asserts.that(Num)Equals(1);
-		Asserts.that(Num := 4)Equals(4);
+		Asserts.that(Int)Equals(1);
+		Asserts.that(Int := 4)Equals(4);
 	}
