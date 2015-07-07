@@ -40,12 +40,22 @@ every AutoboxingTest is:
 
 	@Test
 	testMaxOfNums(Asserts) {
-		var Num[] = [5];
-		Asserts.that(5.orMaxOf(Num[]))Equals(5);
-		Num[] = [5, 4];
-		Asserts.that(5.orMaxOf(Num[]))Equals(5);
-		Num[] = [5, 4, 6];
-		Asserts.that(5.orMaxOf(Num[]))Equals(6);
+		var Num[] = [5.0];
+		Asserts.that(5.0.orMaxOf(Num[]))Equals(5.0);
+		Num[] = [5.0, 4.0];
+		Asserts.that(5.0.orMaxOf(Num[]))Equals(5.0);
+		Num[] = [5.0, 4.0, 6.0];
+		Asserts.that(5.0.orMaxOf(Num[]))Equals(6.0);
+	}
+
+	@Test
+	testMaxOfInts(Asserts) {
+		var Int[] = [5];
+		Asserts.that(5.orMaxOf(Int[]))Equals(5);
+		Int[] = [5, 4];
+		Asserts.that(5.orMaxOf(Int[]))Equals(5);
+		Int[] = [5, 4, 6];
+		Asserts.that(5.orMaxOf(Int[]))Equals(6);
 	}
 
 	@Test
@@ -57,12 +67,22 @@ every AutoboxingTest is:
 
 	@Test
 	testMinOfNums(Asserts) {
-		var Num[] = [5];
-		Asserts.that(5.orMinOf(Num[]))Equals(5);
-		Num[] = [5, 4];
-		Asserts.that(5.orMinOf(Num[]))Equals(4);
-		Num[] = [5, 4, 6];
-		Asserts.that(5.orMinOf(Num[]))Equals(4);
+		var Num[] = [5.0];
+		Asserts.that(5.orMinOf(Num[]))Equals(5.0);
+		Num[] = [5.0, 4.0];
+		Asserts.that(5.orMinOf(Num[]))Equals(4.0);
+		Num[] = [5.0, 4.0, 6.0];
+		Asserts.that(5.orMinOf(Num[]))Equals(4.0);
+	}
+
+	@Test
+	testMinOfInts(Asserts) {
+		var Int[] = [5];
+		Asserts.that(5.orMinOf(Int[]))Equals(5);
+		Int[] = [5, 4];
+		Asserts.that(5.orMinOf(Int[]))Equals(4);
+		Int[] = [5, 4, 6];
+		Asserts.that(5.orMinOf(Int[]))Equals(4);
 	}
 
 	@Test
@@ -114,21 +134,21 @@ every AutoboxingTest is:
 
 	@Test
 	testArrayContains(Asserts) {
-		var Num[] = [];
+		var Int[] = [];
 		var Text[] = [];
 		var AutoboxingTest[] = [];
-		Asserts.isFalse(Num[].contains(5));
+		Asserts.isFalse(Int[].contains(5));
 		Asserts.isFalse(Text[].contains("test"));
 		Asserts.isFalse(AutoboxingTest[].contains(this));
-		Num[] = [4];
+		Int[] = [4];
 		Text[] = ["hey"];
-		Asserts.isFalse(Num[].contains(5));
+		Asserts.isFalse(Int[].contains(5));
 		Asserts.isFalse(Text[].contains("test"));
 		Asserts.isFalse(AutoboxingTest[].contains(this));
-		Num[] = [4, 5];
+		Int[] = [4, 5];
 		Text[] = ["hey", "test"];
 		AutoboxingTest[] = [this];
-		Asserts.isTrue(Num[].contains(5));
+		Asserts.isTrue(Int[].contains(5));
 		Asserts.isTrue(Text[].contains("test"));
 		Asserts.isTrue(AutoboxingTest[].contains(this));
 	}
@@ -213,12 +233,27 @@ every AutoboxingTest is:
 
 	@Test
 	testParseNum(Asserts) {
-		it(Asserts)That("5"s.parseNum())ExistsAndEquals(5);
-		it(Asserts)That("54".parseNum())ExistsAndEquals(54);
+		it(Asserts)That("5"s.parseNum())ExistsAndEquals(5.0);
+		it(Asserts)That("54".parseNum())ExistsAndEquals(54.0);
 		it(Asserts)That("54.5".parseNum())ExistsAndEquals(54.5);
 		it(Asserts)That("-54.5".parseNum())ExistsAndEquals(-54.5);
 		var Num? = "-5o".parseNum();
 		if Num exists {
+			Asserts.fail("-5o should not have parsed.");
+		}
+	}
+
+	@Test
+	testParseNum(Asserts) {
+		it(Asserts)That("5"s.parseInt())ExistsAndEquals(5);
+		it(Asserts)That("54".parseInt())ExistsAndEquals(54);
+		it(Asserts)That("-54".parseInt())ExistsAndEquals(-54);
+		var Int? = "-5o".parseInt();
+		if Int exists {
+			Asserts.fail("-5o should not have parsed.");
+		}
+		var Int? = "-5.0".parseInt();
+		if Int exists {
 			Asserts.fail("-5o should not have parsed.");
 		}
 	}
@@ -228,6 +263,14 @@ every AutoboxingTest is:
 			Asserts.that(Num)Equals($Num);
 		} else {
 			Asserts.fail("Num should have equaled " + $Num.toText() + ", but didn't exist.");
+		}
+	}
+
+	it(Asserts)That(Int?)ExistsAndEquals($Int) {
+		if Int exists {
+			Asserts.that(Int)Equals($Int);
+		} else {
+			Asserts.fail("Int should have equaled " + $Int.toText() + ", but didn't exist.");
 		}
 	}
 
@@ -287,12 +330,12 @@ every AutoboxingTest is:
 		it(Asserts)That("aoeu".indexOf("e"))ExistsAndEquals(2);
 		it(Asserts)That("aoeu".indexOf("eu"))ExistsAndEquals(2);
 		it(Asserts)That("aoeu".indexOf("u"))ExistsAndEquals(3);
-		var Num? = "aoeu".indexOf("i");
-		if Num exists {
+		var Int? = "aoeu".indexOf("i");
+		if Int exists {
 			Asserts.fail('"aoeu".indexOf("i") shouldn\'t exist');
 		}
-		Num = "aoeu".indexOf("aoi");
-		if Num exists {
+		Int = "aoeu".indexOf("aoi");
+		if Int exists {
 			Asserts.fail('"aoeu".indexOf("aoi") shouldn\'t exist');
 		}
 	}
