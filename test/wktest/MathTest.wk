@@ -27,7 +27,7 @@ every MathTest is:
 		Asserts.that(2.5 + 2.55)Equals(5.05);
 		Asserts.that(6.5 + 2.55)Equals(9.05);
 		Asserts.that(60000.5 + 20000.55)Equals(80001.05);
-		Asserts.that(- 20.5 + 14.55)Equals(- 5.95);
+		Asserts.that(- 20.5 + 14.54)Equals(- 5.96);
 	}
 
 	@Test
@@ -37,7 +37,7 @@ every MathTest is:
 		Asserts.that(40 - 80)Equals(- 40);
 		Asserts.that(6.5 - 2.45)Equals(4.05);
 		Asserts.that(42.5 - 2.45)Equals(40.05);
-		Asserts.that(40.5 - 80.45)Equals(- 40.05);
+		Asserts.that(40.5 - 80.45)Equals(- 39.95);
 	}
 
 	@Test
