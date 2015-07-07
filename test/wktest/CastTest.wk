@@ -21,8 +21,8 @@ every CastTest is:
 
 	@Test
 	testUnsafeCastRunsCode(Asserts) {
-		var Num = 0;
-		(unsafe cast Num) (Num := 5);
+		var Int = 0;
+		(unsafe cast Int) (Int := 5);
 
-		Asserts.that(Num)Equals(5);
+		Asserts.that(Int)Equals(5);
 	}
