@@ -35,3 +35,10 @@ every TernaryOperatorTest is:
 		Asserts.that((5 if true else 10).orMinOf(8))Equals(5);
 		Asserts.that((10 if false else 5).orMinOf(8))Equals(5);
 	}
+
+	@Test
+	testAssociativityIsRightToLeft(Asserts) {
+		Asserts.that(true if true else false if false else false)Equals(true);
+		Asserts.that(true if true else (false if false else false))Equals(true);
+		Asserts.that((true if true else false) if false else false)Equals(false);
+	}

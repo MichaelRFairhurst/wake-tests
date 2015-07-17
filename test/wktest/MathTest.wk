@@ -92,6 +92,18 @@ every MathTest is:
 		Asserts.that(6 * 2 - 5)Equals(7);
 		Asserts.that(6 / 2 + 5)Equals(8.0);
 		Asserts.that(6 / 2 - 5)Equals(-2.0);
+		Asserts.that((5 + 6) * 2)Equals(22);
+		Asserts.that((5 - 6) * 2)Equals(-2);
+		Asserts.that((5 + 5) / 2)Equals(5.0);
+		Asserts.that((5 - 7) / 2)Equals(-1.0);
+		Asserts.that(6 * (2 + 5))Equals(42);
+		Asserts.that(6 * (2 - 5))Equals(-18);
+		Asserts.that(6 / (2 + 4))Equals(1.0);
+		Asserts.that(6 / (2 - 4))Equals(-3.0);
+		Asserts.that(8 / 4 / 2)Equals(1.0);
+		Asserts.that(8 / (4 / 2))Equals(4.0);
+		Asserts.that(8 - 4 - 2)Equals(2);
+		Asserts.that(8 - (4 - 2))Equals(6);
 	}
 
 	@Test
